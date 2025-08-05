@@ -1,0 +1,81 @@
+@media (max-width: 1508px) {
+    #cartas{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    #fotos-solitario{
+        display: flex;
+        position: relative;
+        justify-content: center;
+        flex-direction: row;
+        gap: 10px;
+    }
+
+    #musica-nave{
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        margin-top: 20px;
+    }
+
+    #drunked-container-max{
+        display: flex;
+        position: relative;
+        flex-direction: column;
+        margin: 10px;
+    }
+
+    #img-bar{
+        
+        flex: 1;
+    }
+
+    #musica{
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        margin: 0px;
+        margin-top: 10px;
+    }
+
+}
+
+@media (min-width: 1800px) {
+    #cartas{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+
+    #tutoriales{
+        gap: 10px;
+        padding: 5px;
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+}
+
+@media (min-width: 800px) {
+    .fullscreen-btn {
+        position: absolute;
+        top: 20%;     
+        right: 15%;    
+        width: 7%;   
+        aspect-ratio: 1; 
+        background-color: white;
+        border: none;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s;
+      }
+
+
+}

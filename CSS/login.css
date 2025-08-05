@@ -1,0 +1,79 @@
+.tablaFormulario
+{
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    text-align: left;
+    flex: 2;
+    align-items: center;
+    justify-content: center;
+}
+
+.formulario
+{
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+    padding: 10px;
+    justify-content: center;
+}
+.tablaFormulario2
+{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+}
+.tablaFormulario2 td, tr
+{
+    padding: 0;
+    margin: 0;
+}
+.fotoPerfil
+{
+    position: relative;
+    background-color: #d9d9d9;
+    height: 250px;
+    width: 75%;
+    left: 13%;
+    top: 0%;
+    border: 1px solid rgb(105, 105, 105);
+    border-radius: 50px;
+    margin: 0;
+    padding: 0;
+    box-shadow: black 0px 0px 5px;
+}
+.registerbtn
+{
+    background-color: rgb(105, 105, 105,0);
+    color: black;
+    border: black 1px solid;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 75%;
+    height: 40px;
+    margin-top: 10px;
+}
+.registerbtn:hover
+{
+    transform: scale(1.1);
+    transition: 1s;
+    color: rgb(0, 0, 0);
+}
+
+.inputFormulario
+{
+    width: 80%;
+    padding: 10px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: 1px solid black;
+    background: #f1f1f1;
+}
+.inputFormulario:invalid
+{
+    border: 2px solid red;
+}

@@ -1,0 +1,559 @@
+/* From Uiverse.io by LightAndy1 */ 
+/* Spotify music card made by: csozi | Website: www.csozi.hu*/
+
+.card {
+    position: relative;
+    margin: 0px;
+    margin-top: -5px;
+    width: 100%;
+    height: 130px;
+    background: #151515;
+    border-radius: 2px;
+    padding: 10px;
+  }
+
+  .card-video{
+    position: relative;
+    margin: 0px;
+    margin-top: -5px;
+    width: 100%;
+    height: 90px;
+    background: #151515;
+    border-radius: 2px;
+    padding: 10px;
+  }
+  
+  .top {
+    position: relative;
+    width: 100%;
+    display: flex;
+    gap: 10px;
+  }
+  
+  .pfp {
+    position: relative;
+    top: 5px;
+    left: 5px;
+    height: 40px;
+    width: 40px;
+    background-color: #d2d2d2;
+    border-radius: 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .title-1 {
+    color: white;
+    font-size: 25px;
+    font-weight: bolder;
+    margin-left: 5px;
+  }
+  
+  .title-2 {
+    color: lightgrey;
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: -7px;
+    margin-left: 5px;
+  }
+  
+  .time {
+    width: 90%;
+    background-color: #5e5e5e;
+    height: 6px;
+    border-radius: 3px;
+    position: absolute;
+    margin-left: 50px;
+    margin-right: 10px;
+    bottom: 21px;
+  }
+  
+  .elapsed {
+    width: 0%;
+    background-color: yellow;
+    height: 100%;
+    border-radius: 3px;
+  }
+
+  .time-video {
+    width: 90%;
+    background-color: #5e5e5e;
+    height: 6px;
+    border-radius: 3px;
+    position: absolute;
+    left: 5%;
+    bottom: 21px;
+  }
+  
+  .elapsed-video {
+    width: 0%;
+    background-color: yellow;
+    height: 100%;
+    border-radius: 3px;
+  }
+  
+  
+  .controls {
+    color: white;
+    display: flex;
+    position: absolute;
+    bottom: 30px;
+    left: 0;
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .volume {
+    height: 100%;
+    width: 50px;
+    margin-right: 2px;
+  }
+  
+  .air {
+    height: 100%;
+    width: 54px;
+  }
+  
+  .controls svg {
+    cursor: pointer;
+    transition: 0.1s;
+    margin-bottom: 5px;
+  }
+  
+  .controls svg:hover {
+    color: yellow;
+  }
+  
+  .volume {
+    opacity: 0;
+    position: relative;
+    transition: 0.2s;
+  }
+  
+  .volume .slider {
+    height: 4px;
+    background-color: #5e5e5e;
+    width: 80%;
+    border-radius: 2px;
+    margin-top: 8px;
+    margin-left: 10%;
+  }
+  
+  .volume .slider .green {
+    background-color: yellow;
+    height: 100%;
+    width: 80%;
+    border-radius: 3px;
+  }
+
+  .volume .slider-video {
+    height: 4px;
+    background-color: #5e5e5e;
+    width: 80%;
+    border-radius: 2px;
+    margin-top: 8px;
+    margin-left: 10%;
+  }
+  
+  .volume .slider-video .green-video {
+    background-color: yellow;
+    height: 100%;
+    width: 80%;
+    border-radius: 3px;
+  }
+  
+  
+  .volume .circle {
+    background-color: white;
+    height: 6px;
+    width: 6px;
+    border-radius: 3px;
+    position: absolute;
+    right: 20%;
+    top: 60%;
+  }
+  
+  .volume_button:hover + .volume,
+  .volume:hover {
+      opacity: 1;
+      pointer-events: auto; 
+  }
+  
+  .timetext {
+    color: white;
+    font-size: 8px;
+    position: absolute;
+  }
+  
+  .time_now {
+    bottom: 8px;
+    left: 15px;
+  }
+  
+  .time_full {
+    bottom: 8px;
+    right: 14px;
+  }
+  
+  .playing {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    gap: 1px;
+    width: 30px;
+    height: 20px;
+  }
+  
+  .greenline {
+    background-color: yellow;
+    height: 20px;
+    width: 2px;
+    position: relative;
+    transform-origin: bottom;
+  }
+  
+  .line-1 {
+    animation: infinite playing 1s ease-in-out;
+    animation-delay: 0.2s;
+  }
+  
+  .line-2 {
+    animation: infinite playing 1s ease-in-out;
+    animation-delay: 0.5s;
+  }
+  
+  .line-3 {
+    animation: infinite playing 1s ease-in-out;
+    animation-delay: 0.6s;
+  }
+  
+  .line-4 {
+    animation: infinite playing 1s ease-in-out;
+    animation-delay: 0s;
+  }
+  
+  .line-5 {
+    animation: infinite playing 1s ease-in-out;
+    animation-delay: 0.4s;
+  }
+  
+  @keyframes playing {
+    0% {
+      transform: scaleY(0.1);
+    }
+  
+    33% {
+      transform: scaleY(0.6);
+    }
+  
+    66% {
+      transform: scaleY(0.9);
+    }
+  
+    100% {
+      transform: scaleY(0.1);
+    }
+  }
+  
+  /* From Uiverse.io by Praashoo7 */ 
+.card-2 {
+    width: 200px;
+    margin: 0px;
+    margin-bottom: -55px;
+    margin-left: -80px;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    height: 100px;
+    border-radius: 2px;
+    transform: scale(0.4); /* Ajusta el valor para cambiar el tamaño */
+    transform-origin: center;
+  }
+  
+  .ups {
+    display: flex;
+  }
+  
+  .screw1 {
+    display: flex;
+    color: black;
+    border: 1px solid black;
+    background-color: black;
+    height: 0.75em;
+    width: 0.75em;
+    margin: 0.5em;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .screw2 {
+    display: flex;
+    color: black;
+    border: 1px solid black;
+    background-color: lightgrey;
+    height: 0.75em;
+    width: 0.7em;
+    margin-top: 0.5em;
+    margin-left: 15.8em;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .downs {
+    display: flex;
+  }
+  
+  .screw3 {
+    display: flex;
+    color: black;
+    border: 1px solid black;
+    background-color: lightgrey;
+    height: 0.75em;
+    width: 0.75em;
+    margin-top: -1.3em;
+    margin-left: 0.5em;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .screw4 {
+    display: flex;
+    color: black;
+    border: 1px solid black;
+    background-color: lightgrey;
+    height: 0.75em;
+    width: 0.75em;
+    margin-top: -1.3em;
+    margin-left: 16.35em;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .card1 {
+    width: 230px;
+    height: 120px;
+    margin-top: 0.5em;
+    margin-left: 2.18em;
+    background-color: black;
+    clip-path: polygon(5% 0, 95% 0, 100% 10%, 100% 100%, 100% 100%, 0 100%, 0 100%, 0 10%);
+    border-radius: 5px;
+  }
+  
+  .line1 {
+    position: relative;
+    width: 200px;
+    height: 1px;
+    background-color: black;
+    top: 1em;
+    left: 0.8em;
+  }
+  
+  .line2 {
+    position: relative;
+    width: 200px;
+    height: 1px;
+    background-color: black;
+    top: 2em;
+    left: 0.8em;
+  }
+  
+  .yl {
+    display: flex;
+    width: 228px;
+    height: 50px;
+    background-color: transparent;
+    background-image: url(/PROM_L1_G7/Imagenes/fondo2.jpg);
+    margin-top: 2.5em;
+    margin-left: 0.06em;
+  }
+  
+  .roll {
+    width: 8em;
+    height: 2em;
+    margin-left: 3em;
+    margin-top: 9px;
+    border-radius: 15px;
+    background-color: black;
+    display: flex;
+  }
+  
+  .tape {
+    width: 3em;
+    height: 1.5em;
+    position: relative;
+    left: 0.9em;
+    background-color: black;
+  }
+  
+  .s_wheel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    top: 0.215em;
+    left: 0.15em;
+    width: 1.55em;
+    height: 1.55em;
+    border: 2px dashed #fff;
+    box-shadow: 0 0 0 4.4px white;
+    border-radius: 50%;
+    animation: 2s run infinite linear;
+  }
+  
+  .window {
+    background-color: white;
+    width: auto;
+    height: 2em;
+  }
+  
+  .e_wheel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    top: 0.215em;
+    left: 1.7em;
+    width: 1.55em;
+    height: 1.55em;
+    border: 2px dashed #fff;
+    box-shadow: 0 0 0 4.4px #fff;
+    border-radius: 50%;
+    animation: 2s run infinite linear;
+  }
+
+  .e_wheel-2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    top: 0.215em;
+    left: 4.8em;
+    width: 1.55em;
+    height: 1.55em;
+    border: 2px dashed #fff;
+    box-shadow: 0 0 0 4.4px #fff;
+    border-radius: 50%;
+    animation: 2s run infinite linear;
+  }
+  
+  
+  .num {
+    margin-left: 1.5em;
+    align-self: center;
+  }
+  
+  .time {
+    font-size: 0.5em;
+  }
+  
+  .card2_main {
+    filter: drop-shadow(4px 4px 14px rgba(0, 0, 0, 1));
+  }
+  
+  .card2 {
+    width: 150px;
+    height: 50px;
+    margin-top: 0em;
+    margin-left: 4.6em;
+    background-color: #252525;
+    clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%);
+  }
+  
+  .screw5 {
+    position: relative;
+    display: flex;
+    color: black;
+    border: 1px solid black;
+    background-color: lightgrey;
+    height: 0.75em;
+    width: 0.75em;
+    left: 4.25em;
+    top: -0.5em;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .c1 {
+    position: relative;
+    width: 0.5em;
+    height: 0.5em;
+    background-color: rgb(190, 190, 190);
+    border-radius: 50%;
+    left: 1.5em;
+    top: 2em;
+  }
+  
+  .t1 {
+    position: relative;
+    width: 0.5em;
+    height: 0.5em;
+    background-color: rgb(190, 190, 190);
+    border-radius: 2px;
+    left: 3em;
+    top: 1em;
+  }
+  
+  .t2 {
+    position: relative;
+    width: 0.5em;
+    height: 0.5em;
+    background-color: rgb(190, 190, 190);
+    border-radius: 2px;
+    left: 5.7em;
+    top: -0.2em;
+  }
+  
+  .c2 {
+    position: relative;
+    width: 0.5em;
+    height: 0.5em;
+    background-color: rgb(190, 190, 190);
+    border-radius: 50%;
+    left: 7.2em;
+    top: -0.2em;
+  }
+  
+  @keyframes run {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+.video-container {
+  position: relative;
+}
+
+.fullscreen-btn {
+  position: absolute;
+  top: 36%;     
+  right: 15%;    
+  width: 20px;   
+  height: 20px;  
+  background-color: white;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s;
+}
+
+.fullscreen-btn svg {
+  width: 60%;   
+  height: auto;
+  color: black;
+}
+
+.fullscreen-btn:hover {
+  transform: scale(1.2);
+}
+
+
+

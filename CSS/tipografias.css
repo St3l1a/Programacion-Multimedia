@@ -1,0 +1,23 @@
+body{
+    font-family: 'Roboto', sans-serif;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+@font-face {
+    font-family: 'Titulo';
+    src: url('../Fuentes/UnifrakturMaguntia-Regular.ttf') format('truetype');
+}
+
+h1{
+    font-family: 'Titulo';
+}
+
+h3{
+    font-size: 20px;
+    font-family: 'Old Standard TT', Times, serif;
+}
+
+p{
+    font-size: 18px;
+    font-family: 'EB Garamond', Times, serif;  
+}

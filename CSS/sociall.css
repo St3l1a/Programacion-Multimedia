@@ -1,0 +1,76 @@
+#contenedor-contacto-redes{
+    display: flex;
+    position: relative;
+    justify-content: start;
+}
+
+#img-mapa{
+    position: relative;
+    margin-top: -100px;
+}
+
+#gmail{
+    display: flex;
+}
+
+#cuadrado{
+    border: 2px solid black;
+    padding: 10px;
+}
+
+.wrapper {
+    display: inline-flex;
+    list-style: none;
+    height: 120px;
+    width: 100%;
+    padding-top: 0px;
+    margin: 0px;
+    margin-bottom: -90px;
+    margin-left: -50px;
+    justify-content: center;
+    font-family: "Poppins", sans-serif;
+  }
+  
+  .wrapper .icon {
+    position: relative;
+    background: transparent;
+    border-radius: 50%;
+    margin: 10px;
+    width: 50px;
+    height: 50px;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper .icon:hover {
+    border-radius: 2px; /* Cambia el borde a cuadrado */
+    background: rgba(0, 0, 0, 0.1); /* Opcional: añade un fondo sutil */
+}
+
+  
+  .wrapper .facebook:hover,
+  .wrapper .facebook:hover .tooltip,
+  .wrapper .facebook:hover .tooltip::before {
+    background: black;
+    color: #fff;
+  }
+  
+  .wrapper .twitter:hover,
+  .wrapper .twitter:hover .tooltip,
+  .wrapper .twitter:hover .tooltip::before {
+    background: black;
+    color: #fff;
+  }
+  
+  .wrapper .instagram:hover,
+  .wrapper .instagram:hover .tooltip,
+  .wrapper .instagram:hover .tooltip::before {
+    background: black;
+    color: #fff;
+  }
+  
