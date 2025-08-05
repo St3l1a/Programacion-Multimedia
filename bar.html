@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="es"> 
+<head>
+    <title>Bar</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="CSS/estilos.css">
+    <link rel="stylesheet" href="CSS/responsive.css">
+    <link rel="stylesheet" href="CSS/tipografias.css">
+    <link rel="stylesheet" href="CSS/login.css">
+</head>
+
+<body>
+    <div class="header">
+        <h1>The Vintage Tavern</h1>
+    </div>
+
+    <nav class="navbar navbar-expand-sm">
+        <div class="container-fluid d-flex justify-content-between">
+            <ul class="navbar-nav w-100 d-flex justify-content-between">
+                <li class="nav-item flex-grow-1 dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                        Cuenta
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="registrarse.html">Registrarse</a>
+                        <a class="dropdown-item" href="iniciarSesion.html">Iniciar Sesión</a>
+                        <a class="dropdown-item" href="contacto.html">Contacta con nosotros</a>
+                    </div>
+                </li>
+                <li class="nav-item flex-grow-1">
+                    <a class="nav-link" href="index.html#drunked-container-max">Bar</a>
+                </li>
+                <li class="nav-item flex-grow-1">
+                    <a class="nav-link" href="datos.html">Datos</a>
+                </li>
+                <li class="nav-item flex-grow-1">
+                    <a class="nav-link" href="index.html#cartas">Cartas</a>
+                </li>
+                <li class="nav-item flex-grow-1">
+                    <a class="nav-link" href="index.html#musica-nave">Música</a>
+                </li>
+                <li class="nav-item flex-grow-1">
+                    <a class="nav-link" href="index.html#contacto">Contacto</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div id="teclas-Bar">
+        <div class="movimientos-Bar">
+            <p id="text-teclas">Teclas para moverse por la escena</p>
+            <img width="100px" src="Imagenes/teclasMovBar.png">
+        </div>
+        <div class="movimientos-Bar">
+            <p>Para entrar en la escana haga click sobre el bar</p>
+            <img width="50px" height="50px" src="Imagenes/foto-click.png">
+        </div>
+        <div class="movimientos-Bar">
+            <p id="escape">Tecla para salir de la escena</p>
+            <img width="50px" height="50px" src="Imagenes/Boton-esc.png">
+        </div>
+    </div>
+
+    <div class="Div3d"></div>
+
+    <script type="importmap">
+    {
+      "imports": {
+        "three": "https://threejs.org/build/three.module.js"
+      }
+    }
+    </script>
+
+    <script type="module">
+        import * as THREE from 'three';
+        import { GLTFLoader } from 'https://threejs.org/examples/jsm/loaders/GLTFLoader.js';
+        import { PointerLockControls } from 'https://threejs.org/examples/jsm/controls/PointerLockControls.js';
+        import { EXRLoader } from 'https://threejs.org/examples/jsm/loaders/EXRLoader.js';
+
+        let container, camera, scene, renderer, controls, clock, ball, cerveza;
+        let velocity = new THREE.Vector3();
+        let ballVelocity = new THREE.Vector3(0, 0, 0);
+        const keysPressed = {};
+        const raycaster = new THREE.Raycaster();
+        const direction = new THREE.Vector3();
+        let colisionables = []; 
+        let R = 0.2;
+        const aroCentro = new THREE.Vector3(-0.1, 3.3, -5);
+
+        init();
+        animate();
+
+        function init() {
+            container = document.createElement('div');
+            container.classList.add('container3D');
+            const parent3D = document.querySelector('.Div3d');
+            parent3D.appendChild(container);
+
+            camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 2000);
+            camera.position.set(7.8, 2, -5);
+
+            scene = new THREE.Scene();
+
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setPixelRatio(window.devicePixelRatio);
+            renderer.setSize(container.clientWidth, container.clientHeight);
+            renderer.shadowMap.enabled = true;
+            renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+            container.appendChild(renderer.domElement);
+
+            const pmremGenerator = new THREE.PMREMGenerator(renderer);
+            pmremGenerator.compileEquirectangularShader();
+
+            const exrLoader = new EXRLoader();
+            exrLoader.load('Imagenes/sky.exr', function (texture) {
+                const envMap = pmremGenerator.fromEquirectangular(texture).texture;
+                scene.background = envMap;
+                scene.environment = envMap;
+                texture.dispose();
+                pmremGenerator.dispose();
+            });
+
+            scene.fog = new THREE.FogExp2(0x9999ff, 0.002);
+
+            controls = new PointerLockControls(camera, document.body);
+            scene.add(controls.object);
+            document.body.addEventListener('click', () => controls.lock());
+
+            document.addEventListener('keydown', (event) => {
+                keysPressed[event.key.toLowerCase()] = true;
+            });
+            document.addEventListener('keyup', (event) => {
+                keysPressed[event.key.toLowerCase()] = false;
+            });
+
+            const ambientLight = new THREE.AmbientLight(0xcccccc, 0.1);
+            scene.add(ambientLight);
+
+            const dirLight = new THREE.DirectionalLight(0xffffff, 1.5);
+            dirLight.position.set(10, 10, 10);
+            dirLight.castShadow = true;
+            dirLight.shadow.mapSize.width = 1024;
+            dirLight.shadow.mapSize.height = 1024;
+            dirLight.shadow.camera.near = 0.5;
+            dirLight.shadow.camera.far = 50;
+            dirLight.shadow.camera.left = -10;
+            dirLight.shadow.camera.right = 10;
+            dirLight.shadow.camera.top = 10;
+            dirLight.shadow.camera.bottom = -10;
+            scene.add(dirLight);
+
+            const groundGeometry = new THREE.PlaneGeometry(200, 200);
+            const groundMaterial = new THREE.ShadowMaterial({ opacity: 0.3 });
+            const ground = new THREE.Mesh(groundGeometry, groundMaterial);
+            ground.rotation.x = -Math.PI / 2;
+            ground.position.y = 0.01;
+            ground.receiveShadow = true;
+            scene.add(ground);
+
+            scene.add(camera);
+
+            const loader = new GLTFLoader();
+            loader.load('models/stylized_tabern_gltf/scene.gltf', (gltf) => {
+                const model = gltf.scene;
+                model.position.set(0, 0, 0);
+                scene.add(model);
+                model.traverse((child) => {
+                    if (child.isMesh) {
+                        colisionables.push(child);
+                        child.geometry.computeBoundingBox();
+                        child.geometry.computeBoundingSphere();
+                        child.castShadow = true;
+                        child.receiveShadow = true;
+                    }
+                });
+            }, undefined, (error) => {
+                console.error('Error al cargar el modelo:', error);
+            });
+
+            const loader2 = new GLTFLoader();
+            loader2.load('models/cerveza/scene.gltf', (gltf) => {
+                cerveza = gltf.scene;
+                cerveza.scale.set(0.2, 0.2, 0.2);
+                cerveza.position.set(7, 1.17, -6.5);
+                cerveza.visible = false; // empieza invisible
+                scene.add(cerveza);
+                cerveza.traverse((child) => {
+                    if (child.isMesh) {
+                        colisionables.push(child);
+                        child.geometry.computeBoundingBox();
+                        child.geometry.computeBoundingSphere();
+                        child.castShadow = true;
+                        child.receiveShadow = true;
+                    }
+                });
+            }, undefined, (error) => {
+                console.error('Error al cargar el modelo:', error);
+            });
+
+            const canasta = new THREE.Group();
+            const tableroGeometry = new THREE.PlaneGeometry(3, 2);
+            const textureLoader = new THREE.TextureLoader();
+            const texture = textureLoader.load('Imagenes/tablero.png');
+            const tableroMaterial = new THREE.MeshBasicMaterial({ map: texture, transparent: true });
+            const tablero = new THREE.Mesh(tableroGeometry, tableroMaterial);
+            tablero.position.set(-0.8, 4, -5);
+            tablero.rotation.y = Math.PI / 2;
+            canasta.add(tablero);
+
+            const aroGeometry = new THREE.TorusGeometry(0.6, 0.04, 16, 100);
+            const aroMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000 });
+            const aro = new THREE.Mesh(aroGeometry, aroMaterial);
+            aro.rotation.x = Math.PI / 2;
+            aro.position.set(-0.1, 3.3, -5);
+            canasta.add(aro);
+
+            scene.add(canasta);
+            colisionables.push(tablero, aro);
+
+            window.addEventListener('mousedown', () => {
+                launchBall();
+            });
+
+            clock = new THREE.Clock();
+            window.addEventListener('resize', onWindowResize, false);
+        }
+
+        function launchBall() {
+            if (ball) scene.remove(ball);
+            const geometry = new THREE.SphereGeometry(R, 32, 32);
+            const material = new THREE.MeshStandardMaterial({ color: 0xff0000 });
+            ball = new THREE.Mesh(geometry, material);
+            ball.castShadow = true;
+            ball.position.copy(camera.position);
+            const direction = new THREE.Vector3();
+            camera.getWorldDirection(direction);
+            const speed = 10;
+            ballVelocity = direction.multiplyScalar(speed);
+            scene.add(ball);
+        }
+
+        function resetBall() {
+            ball.position.set(0, 0.3, 0);
+            ballVelocity = new THREE.Vector3(0, 0, 0);
+        }
+
+        function onWindowResize() {
+            camera.aspect = container.clientWidth / container.clientHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(container.clientWidth, container.clientHeight);
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            animateBall();
+            checkCervezaVisibility(); // <-- Añadido aquí
+            render();
+        }
+
+        function render() {
+            updateMovement();
+            renderer.render(scene, camera);
+        }
+
+        function updateMovement() {
+            const speed = 0.1;
+            direction.set(0, 0, 0);
+            if (keysPressed['w']) direction.z += 1;
+            if (keysPressed['s']) direction.z -= 1;
+            if (keysPressed['a']) direction.x -= 1;
+            if (keysPressed['d']) direction.x += 1;
+
+            if (direction.length() > 0) {
+                const rayOrigin = controls.getObject().position.clone();
+                rayOrigin.y = 0.3;
+                const moveDir = direction.clone().applyQuaternion(camera.quaternion).setY(0).normalize();
+                raycaster.set(rayOrigin, moveDir);
+                const intersects = raycaster.intersectObjects(colisionables, true);
+                if (intersects.length === 0 || intersects[0].distance > 0.5) {
+                    controls.moveRight(direction.x * speed);
+                    controls.moveForward(direction.z * speed);
+                }
+            }
+        }
+
+        function animateBall() {
+            let delta = clock.getDelta();
+            if (ball) {
+                let gravity = new THREE.Vector3(0, -9.8, 0);
+                ballVelocity.add(gravity.multiplyScalar(delta));
+                ball.position.add(ballVelocity.clone().multiplyScalar(delta));
+                if (ball.position.y < 0.3) {
+                    ball.position.y = 0.3;
+                    ballVelocity.y = Math.abs(ballVelocity.y) < 1 ? 0 : -ballVelocity.y * 0.5;
+                }
+                const CR = 0.5;
+                for (let obj of colisionables) {
+                    const objBox = new THREE.Box3().setFromObject(obj);
+                    const ballCenter = ball.position.clone();
+                    const closestPoint = objBox.clampPoint(ballCenter, new THREE.Vector3());
+                    const d = ballCenter.clone().sub(closestPoint);
+                    const magD = d.length();
+                    if (magD < R) {
+                        const atraviesa = 2 * R - magD;
+                        const normal = d.clone().normalize();
+                        const desplazamiento = normal.clone().multiplyScalar(atraviesa / 2);
+                        ball.position.add(desplazamiento);
+                        const nv = normal.dot(ballVelocity);
+                        const Vn = normal.clone().multiplyScalar(nv);
+                        const Vt = ballVelocity.clone().sub(Vn);
+                        const vSalida = Vt.sub(Vn.multiplyScalar(CR));
+                        ballVelocity.copy(vSalida);
+                    }
+                }
+                if (ball.position.y < -10 || ball.position.x < -10 || ball.position.x > 10 || ball.position.z < -10 || ball.position.z > 10) {
+                    resetBall();
+                }
+            }
+        }
+
+        function checkCervezaVisibility() {
+            if (!cerveza) return;
+            const distancia = camera.position.distanceTo(cerveza.position);
+            cerveza.visible = distancia < 2.5;
+        }
+    </script>
+</body>
+</html>
