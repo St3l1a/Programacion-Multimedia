@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es"> 
+<head>
+    <title>Login</title>
+    <meta charset="UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="CSS/estilos.css">
+    <link rel="stylesheet" href="CSS/responsive.css">
+    <link rel="stylesheet" href="CSS/tipografias.css">
+    <link rel="stylesheet" href="CSS/login.css">
+    
+</head>
+
+<body>
+    <div class="header">
+        <h1>The Vintage Tavern</h1>
+    </div>
+    <nav class="navbar navbar-expand-sm">
+        <div class="container-fluid d-flex justify-content-between">
+            <ul class="navbar-nav w-100 d-flex justify-content-between">
+              <li class="nav-item flex-grow-1 dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                  Cuenta
+                </a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item " href="registrarse.html">Registrarse</a>
+                  <a class="dropdown-item" href="iniciarSesion.html">Iniciar Sesión</a>
+                  <a class="dropdown-item" href="contacto.html">Contacta con nosotros</a>
+                </div>
+              </li>
+              <li class="nav-item flex-grow-1">
+                <a class="nav-link" href="index.html#drunked-container-max">Bar</a>
+              </li>
+              <li class="nav-item flex-grow-1">
+                    <a class="nav-link" href="datos.html">Datos</a>
+                </li>
+              <li class="nav-item flex-grow-1">
+                <a class="nav-link" href="index.html#cartas">Cartas</a>
+              </li>
+              <li class="nav-item flex-grow-1">
+                <a class="nav-link" href="index.html#musica-nave">Música</a>
+              </li>
+              <li class="nav-item flex-grow-1">
+                <a class="nav-link" href="index.html#contacto">Contacto</a>
+              </li>
+            </ul>
+          </div>
+    </nav>
+
+    <h1>Iniciar Sesión</h1>
+    <form action="" class="formularioSesion">
+      
+        <label for="usuario"><b>Nombre de usuario</b></label>
+        <input class="inputFormularioSesion" type="text" placeholder="Introduzca su usuario" id="usuario" required>
+        <label for="contraseña"><b>Contraseña</b></label>
+        <input class="inputFormularioSesion" type="password" placeholder="Introduzca su contraseña" name="contraseña" required>
+        <button type="submit" class="registerbtnSesion">Iniciar Sesión</button>
+    </form>
+    
+
+
+</body>
+</html>
